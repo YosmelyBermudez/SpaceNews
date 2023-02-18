@@ -1,0 +1,42 @@
+<h1>Register</h1>
+<form [formGroup]="myForm" (ngSubmit)="registrarse()" >
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="nombre"
+            [ngClass]="{error1:myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty}">
+        <mat-hint *ngIf="myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty">The field is required</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="apellido"
+            [ngClass]="{error1:myForm.get('apellido')?.errors && myForm.get('apellido')?.dirty}">
+        <mat-hint *ngIf="myForm.get('apellido')?.errors && myForm.get('apellido')?.dirty">The field is required</mat-hint>
+    </mat-form-field>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Number Phone</mat-label>
+            <input matInput type="phone" formControlName="telefono">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="correo"
+                [ngClass]="{error1:myForm.get('correo')?.errors && myForm.get('correo')?.dirty}">
+            <mat-hint *ngIf="myForm.get('correo')?.errors && myForm.get('correo')?.dirty"></mat-hint>
+        </mat-form-field>
+    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="text" formControlName="clave"
+            [ngClass]="{error1:myForm.get('clave')?.errors && myForm.get('clave')?.dirty}">
+        <mat-hint *ngIf="myForm.get('clave')?.errors && myForm.get('clave')?.dirty">
+        <p *ngIf="myForm.get('clave')?.hasError('required')">The field is required</p>
+            <p *ngIf="myForm.get('clave')?.hasError('minlength')">You must complete at least 6 characters</p>
+            <p *ngIf="myForm.get('clave')?.hasError('maxlength')">You must complete no more than 10 characters</p>
+    </mat-hint>
+    </mat-form-field>
+    <div class="col-14">
+        <button mat-raised-button disabled type="submit" [disabled]="myForm.invalid" color="primary">Sign in</button>
+    </div>
+</form>
